@@ -1,23 +1,17 @@
-name: Deploy to AWS
+name: Test Self-Hosted Runner
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  deploy:
+  test-runner:
     runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: |
-          cd /home/ubuntu/YOUR-REPO
-          npm install
+      - name: Print System Info
+        run: uname -a
 
-      - name: Restart App
-        run: |
-          pm2 restart all
+      - name: List Files
+        run: ls -alh
 
