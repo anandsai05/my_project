@@ -1,0 +1,23 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          cd /home/ubuntu/YOUR-REPO
+          npm install
+
+      - name: Restart App
+        run: |
+          pm2 restart all
+
